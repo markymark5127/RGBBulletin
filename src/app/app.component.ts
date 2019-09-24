@@ -14,6 +14,7 @@ export interface Nav {
 export class AppComponent implements OnDestroy {
   title = 'RGB Bulletin';
   mobileQuery: MediaQueryList;
+  Undefined = undefined;
 
   // List of consoles applies to all
   consoles: Nav[] = [
@@ -134,7 +135,7 @@ export class AppComponent implements OnDestroy {
       subCat: this.consoles
     },
     {
-      cat: 'Unfinished Games',
+      cat: 'Unreleased',
       subCat: this.consoles
     },
     {
@@ -150,7 +151,8 @@ export class AppComponent implements OnDestroy {
             { cat: 'RGB SCART' },
             { cat: 'VGA' },
             { cat: 'HDMI' },
-            { cat: 'Display Port'}
+            { cat: 'Display Port' },
+            { cat: 'USB C' }
           ]
         },
         { cat: 'Switches' },
