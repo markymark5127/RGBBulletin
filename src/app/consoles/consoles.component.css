@@ -1,0 +1,13 @@
+.logoCompany {
+  width: 20%;
+}
+.logoConsole {
+  width: 50%;
+}
+.logoConsoleWrapper {
+  text-align: center;
+  margin: 5%;
+}
+.consoleName {
+  text-align: center;
+}

@@ -10,10 +10,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatMenuModule } from '@angular/material/menu';
+import { ConsolesComponent } from './consoles/consoles.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ConsolesComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatToolbarModule,
     MatListModule,
     MatIconModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

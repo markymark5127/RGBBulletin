@@ -3,6 +3,7 @@ import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 
 export interface Nav {
   cat: string;
+  link: string;
   subCat?: Nav[];
 }
 
@@ -19,36 +20,98 @@ export class AppComponent implements OnDestroy {
   // List of consoles applies to all
   consoles: Nav[] = [
     {
+      cat: '3DO',
+      subCat: [
+        {
+          cat: 'Home Consoles',
+          subCat: [
+            { cat: '3DO', subCat: [], link: '.' }
+          ],
+          link: '.',
+        }
+      ],
+      link: '.'
+    },
+    {
       cat: 'Atari',
       subCat: [
         {
           cat: 'Home Consoles',
           subCat: [
-            { cat: 'Atari 2600' },
-            { cat: 'Atari 5200' },
-            { cat: 'Atari 7800' },
-            { cat: 'Jaguar'}
-          ]
+            { cat: 'Atari 2600', subCat: [], link: '.' },
+            { cat: 'Atari 5200', subCat: [], link: '.'  },
+            { cat: 'Atari 7800', subCat: [], link: '.'  },
+            { cat: 'Jaguar', subCat: [], link: '.' }
+          ],
+          link: '.'
         },
         {
           cat: 'Handheld Consoles',
           subCat: [
-            { cat: 'Lynx' }
-          ]
+            { cat: 'Lynx', subCat: [], link: '.'  }
+          ],
+          link: '.'
         },
-      ]
+      ],
+      link: '.'
     },
     {
       cat: 'Microsoft',
       subCat: [
-        { cat: 'Xbox' },
-        { cat: 'Xbox 360' },
-        { cat: 'Xbox One' },
-        { cat: 'Project Scarlett' }
-      ]
+        {
+          cat: 'Home Consoles',
+          subCat: [
+            { cat: 'Xbox', subCat: [], link: '.'  },
+            { cat: 'Xbox 360', subCat: [], link: '.'  },
+            { cat: 'Xbox One', subCat: [], link: '.'  },
+            { cat: 'Project Scarlett', subCat: [], link: '.'  }
+          ],
+          link: '.'
+        }
+      ],
+      link: '.'
     },
     {
-      cat: 'NEC'
+      cat: 'NEC',
+      subCat: [
+        {
+          cat: 'Home Consoles',
+          subCat: [
+            { cat: 'TurboGrafx 16/PC Engine', subCat: [], link: '.' },
+            { cat: 'PC-FX', subCat: [], link: '.' }
+          ],
+          link: '.'
+        },
+        {
+          cat: 'Handheld Consoles',
+          subCat: [
+            { cat: 'TurboExpress', subCat: [], link: '.' }
+          ],
+          link: '.'
+        }
+      ],
+      link: '.'
+    },
+    {
+      cat: 'Neo Geo',
+      subCat: [
+        {
+          cat: 'Home Consoles',
+          subCat: [
+            { cat: 'AES', subCat: [], link: '.' },
+            { cat: 'CD', subCat: [], link: '.' }
+          ],
+          link: '.'
+        },
+        {
+          cat: 'Handheld Consoles',
+          subCat: [
+            { cat: 'Pocket Color', subCat: [], link: '.' }
+          ],
+          link: '.'
+        }
+      ],
+      link: '.'
     },
     {
       cat: 'Nintendo',
@@ -56,31 +119,44 @@ export class AppComponent implements OnDestroy {
         {
           cat: 'Home Consoles',
           subCat: [
-            { cat: 'NES' },
-            { cat: 'Super Nintendo'},
-            { cat: 'Nintendo 64' },
-            { cat: 'Gamecube' },
-            { cat: 'Wii' },
-            { cat: 'Wii U' },
-            { cat: 'Switch' }
-          ]
+            { cat: 'Nntendo Entertainment System', subCat: [], link: '.'  },
+            { cat: 'Super Nintendo', subCat: [], link: '.' },
+            { cat: 'Nintendo 64', subCat: [], link: '.'  },
+            { cat: 'Gamecube', subCat: [], link: '.'  },
+            { cat: 'Wii', subCat: [], link: '.'  },
+            { cat: 'Wii U', subCat: [], link: '.'  },
+            { cat: 'Switch', subCat: [], link: '.'  }
+          ],
+          link: '.'
         },
         {
           cat: 'Handheld Consoles',
           subCat: [
-            { cat: 'Gameboy' },
-            { cat: 'Gameboy Color' },
-            { cat: 'Virtual Boy' },
-            { cat: 'Gameboy Advanced' },
-            { cat: 'Nintendo DS' },
-            { cat: 'Nintendo 3DS' },
-            { cat: 'Switch' }
-          ]
+            { cat: 'Gameboy', subCat: [], link: '.'  },
+            { cat: 'Gameboy Color', subCat: [], link: '.'  },
+            { cat: 'Virtual Boy', subCat: [], link: '.'  },
+            { cat: 'Gameboy Advanced', subCat: [], link: '.'  },
+            { cat: 'Nintendo DS', subCat: [], link: '.'  },
+            { cat: 'Nintendo 3DS', subCat: [], link: '.'  },
+            { cat: 'Switch', subCat: [], link: '.'  }
+          ],
+          link: '.'
         }
-      ]
+      ],
+      link: '.'
     },
     {
-      cat: 'Phillips'
+      cat: 'Phillips',
+      subCat: [
+        {
+          cat: 'Home Consoles',
+          subCat: [
+            { cat: 'CDI', subCat: [], link: '.' }
+          ],
+          link: '.'
+        }
+      ],
+      link: '.'
     },
     {
       cat: 'Sega',
@@ -88,21 +164,24 @@ export class AppComponent implements OnDestroy {
         {
           cat: 'Home Consoles',
           subCat: [
-            { cat: 'SG 1000' },
-            { cat: 'Master System' },
-            { cat: 'Genesis/MegaDrive' },
-            { cat: 'Saturn' },
-            { cat: 'Dreamcast' }
-          ]
+            { cat: 'SG 1000', subCat: [], link: '.'  },
+            { cat: 'Master System', subCat: [], link: '.'  },
+            { cat: 'Genesis/MegaDrive', subCat: [], link: '.'  },
+            { cat: 'Saturn', subCat: [], link: '.'  },
+            { cat: 'Dreamcast', subCat: [], link: '.'  }
+          ],
+          link: '.'
         },
         {
           cat: 'Handheld Consoles',
           subCat: [
-            { cat: 'Game Gear' },
-            { cat: 'Nomad' }
-          ]
+            { cat: 'Game Gear', subCat: [], link: '.'  },
+            { cat: 'Nomad', subCat: [], link: '.'  }
+          ],
+          link: '.'
         }
-      ]
+      ],
+      link: '.'
     },
     {
       cat: 'Sony',
@@ -110,33 +189,37 @@ export class AppComponent implements OnDestroy {
         {
           cat: 'Home Consoles',
           subCat: [
-            { cat: 'Playstation' },
-            { cat: 'Playstation 2' },
-            { cat: 'Playstation 3' },
-            { cat: 'Playstation 4' }
-          ]
+            { cat: 'Playstation', subCat: [], link: '.'  },
+            { cat: 'Playstation 2', subCat: [], link: '.'  },
+            { cat: 'Playstation 3', subCat: [], link: '.'  },
+            { cat: 'Playstation 4', subCat: [], link: '.'  },
+            { cat: 'Playstation 5', subCat: [], link: '.'  }
+          ],
+          link: '.'
         },
         {
           cat: 'Handheld Consoles',
           subCat: [
-            { cat: 'PSP' },
-            { cat: 'Vita' }
-          ]
+            { cat: 'PSP', subCat: [], link: '.'  },
+            { cat: 'Vita', subCat: [], link: '.'  }
+          ],
+          link: '.'
         }
-      ]
-
+      ],
+      link: '.'
     }
-
   ];
 
   nav: Nav[] = [
     {
       cat: 'Console Info',
-      subCat: this.consoles
+      subCat: this.consoles,
+      link: '.'
     },
     {
       cat: 'Unreleased',
-      subCat: this.consoles
+      subCat: this.consoles,
+      link: '.'
     },
     {
       cat: 'Display',
@@ -144,21 +227,21 @@ export class AppComponent implements OnDestroy {
         {
           cat: 'Connection',
           subCat: [
-            { cat: 'RF' },
-            { cat: 'Composite' },
-            { cat: 'S-Video' },
-            { cat: 'YPbPr' },
-            { cat: 'RGB SCART' },
-            { cat: 'VGA' },
-            { cat: 'HDMI' },
-            { cat: 'Display Port' },
-            { cat: 'USB C' }
-          ]
+            { cat: 'RF', subCat: [], link: '.'  },
+            { cat: 'Composite', subCat: [], link: '.'  },
+            { cat: 'S-Video', subCat: [], link: '.'  },
+            { cat: 'YPbPr', subCat: [], link: '.'  },
+            { cat: 'RGB SCART', subCat: [], link: '.'  },
+            { cat: 'VGA', subCat: [], link: '.'  },
+            { cat: 'HDMI', subCat: [], link: '.'  },
+            { cat: 'Display Port', subCat: [], link: '.'  },
+            { cat: 'USB C', subCat: [], link: '.'  }
+          ],
+          link: '.'
         },
-        { cat: 'Switches' },
-        { cat: 'Upscalers' },
-
-      ]
+        { cat: 'Switches', subCat: [], link: '.'  },
+        { cat: 'Upscalers', subCat: [], link: '.'  },
+      ], link: '.'
     }
   ];
 
@@ -175,6 +258,10 @@ export class AppComponent implements OnDestroy {
   ngOnDestroy(): void {
     // tslint:disable-next-line: deprecation
     this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
+
+  closeSidenav() {
+
   }
 
 }

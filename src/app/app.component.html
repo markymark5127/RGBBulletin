@@ -7,45 +7,69 @@
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <a *ngFor="let cat of this.nav">
-          <span *ngIf="cat.subCat!=Undefined;else nonDropdown">
-            <mat-expansion-panel>
-                <mat-panel-title>
-                  <a mat-list-item routerLink="." >{{cat.cat}}</a>
-                </mat-panel-title>
-            </mat-expansion-panel>
-          </span>
-          <ng-template #nonDropdown>
-            <a mat-list-item routerLink="." >{{cat.cat}}</a>
-          </ng-template>
-
-        </a>
-
-        <!-- <a mat-list-item routerLink="." *ngFor="let cat of this.nav">{{cat.cat}}  <button class="dropdown-btn">Dropdown
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <span *ngIf="cat.subCat!==undefined;else nothing">
-
-            <mat-nav-list>
-              <a mat-list-item routerLink='.' *ngFor='let cat2 of cat.subCat'>{{cat2.cat}}
-                <button class="dropdown-btn">Dropdown
-                  <i class="fa fa-caret-down"></i>
-                </button>
-                <span *ngIf="cat.subCat!==undefined;else nothing">
-                  <mat-nav-list>
-
-                  </mat-nav-list>
-                </span>
+        <mat-accordion >
+          <div *ngFor="let cat of this.nav">
+            <div class="nav-head" *ngIf="cat.subCat.length === 0">
+              <a class="nav-link" [routerLink]="cat.link" routerLinkActive="selected" (click)="closeSidenav()">
+                <span class="nav-link-text">{{cat.cat}}</span>
               </a>
-            </mat-nav-list>
-          </span>
-        </a>
-        <ng-template #nothing></ng-template> -->
+            </div>
+            <!-- use expansion panel for heading item with sub page links -->
+            <mat-expansion-panel *ngIf="cat.subCat.length > 0" class="mat-elevation-z0">
+              <mat-expansion-panel-header class="nav-head" [expandedHeight]="'48px'">
+                <mat-panel-title class="nav-link">
+                  <span class="nav-link-text">{{cat.cat}}</span>
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+
+              <div class="nav-section">
+                <!-- loop through all your sub pages inside the expansion panel content -->
+                <div *ngFor="let navPage of cat.subCat" class="nav-item">
+                  <!-- <a class="nav-link" [routerLink]="navPage.link" routerLinkActive="selected" (click)="closeSidenav()">{{navPage.cat}}</a> -->
+
+                  <!-- if has no sub category -->
+                  <span *ngIf="navPage.subCat.length === 0">
+                    <button mat-menu-item >{{navPage.cat}}</button>
+                  </span>
+
+                  <!-- if has sub category -->
+                  <span *ngIf="navPage.subCat.length > 0">
+                    <button mat-menu-item [matMenuTriggerFor]="menu" >{{navPage.cat}}</button>
+                    <mat-menu #menu="matMenu">
+
+                      <!-- if has sub category -->
+                      <span *ngIf="navPage.subCat.length > 0">
+                        <span *ngFor="let sideCat of navPage.subCat">
+                          <!-- if has no sub category -->
+                          <span *ngIf="sideCat.subCat.length === 0">
+                              <button mat-menu-item >{{sideCat.cat}}</button>
+                          </span>
+
+                          <!-- if has sub category -->
+                          <span *ngIf="sideCat.subCat.length > 0">
+                            <button mat-menu-item [matMenuTriggerFor]="sideMenu" >{{sideCat.cat}}</button>
+                            <mat-menu #sideMenu="matMenu">
+                              <button mat-menu-item *ngFor="let sideSideCat of sideCat.subCat">{{sideSideCat.cat}}</button>
+                            </mat-menu>
+                          </span>
+
+                        </span>
+                      </span>
+                    </mat-menu>
+                  </span>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </div>
+        </mat-accordion>
       </mat-nav-list>
     </mat-sidenav>
 
-    <mat-sidenav-content>
-      <router-outlet></router-outlet>
+    <mat-sidenav-content >
+      <div class="articleMain">
+        <router-outlet></router-outlet>
+      </div>
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

@@ -31,4 +31,18 @@ h1.example-app-name {
   flex: 1 0 auto;
 }
 
+.articleMain {
+  background-color: white;
+  margin: 0px;
+  padding: 0px;
+  width: 60%;
+  position: absolute;
+  top: 5%;
+  left: 12.5%;
+  border: solid gray ;
+  border-width: .5px ;
+  border-radius: 5px ;
+  padding: 5%;
+
+}
 
