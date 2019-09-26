@@ -5,7 +5,7 @@ import { ConsolesComponent } from './consoles/consoles.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'consoles', component: ConsolesComponent},
+  { path: 'console/:company/:type/:console', component: ConsolesComponent},
   // { path: '**', component: PageNotFoundComponent }
 ];
 

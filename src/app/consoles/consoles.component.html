@@ -1,36 +1,58 @@
-
 <div>
-  <img src="assets/company/nintendo.png" class="logoCompany">
+  <img src="{{this.company.logo}}" class="logoCompany">
 </div>
-
 <div class="logoConsoleWrapper">
-  <img src="assets/console/logo/snes.png" class="logoConsole">
+  <img src="{{this.console.logo}}" class="logoConsole">
 </div>
-
 <div class="consoleName">
-  <h1>Super Nintendo/Super Famicom</h1>
+  <h1>{{this.console.name}}</h1>
 </div>
-
 <div class="info">
-  <div class="intro">
-    <p>The North American version of this console called the Super Nintendo is denoted by the more square shape and the large purple buttons has
-       two major console revisions, dubbed the "Fat" console revision was the first release and the "Junior" or "Mini" for the later smaller models of the console.</p>
-    <p>The PAL and Japanese versions of the console (named Super Famicom and Super Nintendo respectively) are essentially the same. They also had two major notable revisions these are also
-      in a "Fat" and "Junior" model. These consoles have a darker gray color with a multicolor logo.</p>
-    <p>Notable differences in the two are the controllers. The North American console stock controllers have two concave face buttons and two convex but often came with a longer cable the PAL/Japan
-       consoles face buttons were all convex. Another major difference is the casing on the North American console is large enough to fit the Japanese cartridges (provided you remov the plastic region
-        protect notches) the Japanese Console you will need an adapter.</p>
+
+  <div class="intro" *ngIf="this.console.info.intro.length > 0">
+    <span *ngFor="let par of this.console.info.intro">
+      <p>{{this.par}}</p>
+    </span>
   </div>
-  <div class="bestvideo">
+  <div class="console">
+      <img src="{{this.console.photo}}">
+  </div>
+
+  <div class="videoOutput" *ngIf="this.console.info.video.length + this.console.info.videoTLDR.length + this.console.info.videoModern.length > 0">
     <h2>Video Output</h2>
-    <p><b>TLDR</b> usually the best video output is 240p or in rare instances 480i rendering at 256 x 224/256 x 239 using RGB (usually through SCART or JP21).</p>
-    <p>With the original "Fat" models all standard video outputs are possible Composite, S-Video, and RGB but there are four revisions of these fat model Super Nintendo's the first model is usually
-      regarded as the worst looking revision of the console. The later revisions with sharper images have been dubbed "1Chip" consoles with the third revision of the 1Chips is considered the
-      sharpest of the other 1Chip units, but it does lack C-Sync compatability but can be restored through mods. The 1Chip consoles are usually denoted with a serial number begining with "un3".
-      To tell for sure look at the inside of the console.</p>
-    <p>The Super Nintendo Junior has what is considered the sharpest video quality but does not support S-Video or RGB without mods<p>
+    <p *ngIf="this.console.info.videoTLDR.length > 0">
+      <b>TLDR</b>
+      <span *ngFor="let par of this.console.info.videoTLDR">
+        {{this.par}}
+      </span>
+    </p>
+    <span *ngFor="let par of this.console.info.video">
+      <p>{{this.par}}</p>
+    </span>
+    <h4 *ngIf="this.console.info.videoModern.length > 0">Modern Solutions</h4>
+    <span *ngFor="let par of this.console.info.videoModern">
+        <p>{{this.par}}</p>
+    </span>
   </div>
-
+  <div class="addOns" *ngIf="this.console.info.addOn.length > 0">
+      <h2 >Add On's</h2>
+      <span *ngFor="let par of this.console.info.addOn">
+          <p>{{this.par}}</p>
+      </span>
+    </div>
+  <div class="access" *ngIf="this.console.info.accesories.length > 0">
+    <h2>Notable Accessories</h2>
+    <span *ngFor="let par of this.console.info.accesories">
+        <p>{{this.par}}</p>
+    </span>
+  </div>
+  <div class="modernVersions" *ngIf="this.console.info.modernVer.length > 0">
+    <h2 >Modern Versions</h2>
+    <span *ngFor="let par of this.console.info.modernVer">
+        <p>{{this.par}}</p>
+    </span>
+  </div>
 </div>
-
-<router-outlet></router-outlet>
+<div>
+  <h6><b>* Most of the information and images displayed on this site has been based off of videos and articles by <a href="https://www.youtube.com/mylifeingaming">My Life In Gaming</a>, <a href="https://www.retrorgb.com/">Retro RGB</a>, and <a href="https://www.youtube.com/user/AdamKoralik">Adam Koralik</a> *</b></h6>
+</div>

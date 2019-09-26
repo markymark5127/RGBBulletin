@@ -7,14 +7,59 @@
   <mat-sidenav-container class="example-sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        <mat-accordion >
+        <mat-accordion>
+          <mat-expansion-panel class="mat-elevation-z0">
+            <mat-expansion-panel-header class="nav-head" [expandedHeight]="'48px'">
+              <mat-panel-title class="nav-link">
+                <span class="nav-link-text">Console Info</span>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="nav-section">
+              <div *ngFor="let co of this.consoleInfo" class="nav-item">
+                <button mat-menu-item [matMenuTriggerFor]="comToCon" >{{co.name}}</button>
+                <mat-menu #comToCon="matMenu">
+                  <span *ngIf="co.homeConsoles.length > 0">
+                    <button mat-menu-item [matMenuTriggerFor]="conToHome">Home Consoles</button>
+                    <mat-menu #conToHome="matMenu">
+                      <span *ngFor="let console of co.homeConsoles">
+                        <button mat-menu-item [routerLink]="[console.link]" routerLinkActive="active"  >{{console.name}}</button>
+                      </span>
+                    </mat-menu>
+                  </span>
+                  <span *ngIf="co.handheldConsoles.length > 0">
+                    <button mat-menu-item [matMenuTriggerFor]="conToHand">Handheld Consoles</button>
+                    <mat-menu #conToHand="matMenu">
+                      <span *ngFor="let console of co.handheldConsoles">
+                        <button mat-menu-item [routerLink]="[console.link]" routerLinkActive="active">{{console.name}}</button>
+                      </span>
+                    </mat-menu>
+                  </span>
+
+                </mat-menu>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- <mat-accordion >
           <div *ngFor="let cat of this.nav">
             <div class="nav-head" *ngIf="cat.subCat.length === 0">
               <a class="nav-link" [routerLink]="cat.link" routerLinkActive="selected" (click)="closeSidenav()">
                 <span class="nav-link-text">{{cat.cat}}</span>
               </a>
             </div>
-            <!-- use expansion panel for heading item with sub page links -->
+            <!-- use expansion panel for heading item with sub page links --
             <mat-expansion-panel *ngIf="cat.subCat.length > 0" class="mat-elevation-z0">
               <mat-expansion-panel-header class="nav-head" [expandedHeight]="'48px'">
                 <mat-panel-title class="nav-link">
@@ -23,29 +68,29 @@
               </mat-expansion-panel-header>
 
               <div class="nav-section">
-                <!-- loop through all your sub pages inside the expansion panel content -->
+                <!-- loop through all your sub pages inside the expansion panel content --
                 <div *ngFor="let navPage of cat.subCat" class="nav-item">
-                  <!-- <a class="nav-link" [routerLink]="navPage.link" routerLinkActive="selected" (click)="closeSidenav()">{{navPage.cat}}</a> -->
+                  <!-- <a class="nav-link" [routerLink]="navPage.link" routerLinkActive="selected" (click)="closeSidenav()">{{navPage.cat}}</a> --
 
-                  <!-- if has no sub category -->
+                  <!-- if has no sub category --
                   <span *ngIf="navPage.subCat.length === 0">
-                    <button mat-menu-item >{{navPage.cat}}</button>
+                    <button mat-menu-item >{{navPage.cat}}!</button>
                   </span>
 
-                  <!-- if has sub category -->
+                  <!-- if has sub category --
                   <span *ngIf="navPage.subCat.length > 0">
                     <button mat-menu-item [matMenuTriggerFor]="menu" >{{navPage.cat}}</button>
                     <mat-menu #menu="matMenu">
 
-                      <!-- if has sub category -->
+                      <!-- if has sub category --
                       <span *ngIf="navPage.subCat.length > 0">
                         <span *ngFor="let sideCat of navPage.subCat">
-                          <!-- if has no sub category -->
+                          <!-- if has no sub category --
                           <span *ngIf="sideCat.subCat.length === 0">
                               <button mat-menu-item >{{sideCat.cat}}</button>
                           </span>
 
-                          <!-- if has sub category -->
+                          <!-- if has sub category --
                           <span *ngIf="sideCat.subCat.length > 0">
                             <button mat-menu-item [matMenuTriggerFor]="sideMenu" >{{sideCat.cat}}</button>
                             <mat-menu #sideMenu="matMenu">
@@ -61,7 +106,7 @@
               </div>
             </mat-expansion-panel>
           </div>
-        </mat-accordion>
+        </mat-accordion> -->
       </mat-nav-list>
     </mat-sidenav>
 
@@ -69,7 +114,6 @@
       <div class="articleMain">
         <router-outlet></router-outlet>
       </div>
-
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>
